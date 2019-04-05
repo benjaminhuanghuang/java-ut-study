@@ -14,7 +14,7 @@
 - Each test should validate one single piece of logic
 
 
-## Stubs an Mockito
+## Stubs an Mock
     Mock a service
     
 ```

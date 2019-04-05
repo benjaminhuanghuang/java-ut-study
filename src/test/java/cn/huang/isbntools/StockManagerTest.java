@@ -10,7 +10,7 @@ public class StockManagerTest {
 
     @Test
     public void testCanGetACorrectLocatorCode() {
-
+        /*
         ExternalISBNDataService testWebService = new ExternalISBNDataService() {
 
             @Override
@@ -25,7 +25,12 @@ public class StockManagerTest {
                 return null;
             }
         };
+        */
+        ExternalISBNDataService testWebService = mock(ExternalISBNDataService.class);
+        when(testWebService.lookup(anyString())).thenReturn(new Book("0140177396", "Of Mice And Men", "J. Steinbeck"));
 
+        ExternalISBNDataService testDatabaseService = mock(ExternalISBNDataService.class);
+        when(testDatabaseService.lookup(anyString())).thenReturn(null);
 
         StockManager stockManager = new StockManager();
         stockManager.setWebService(testWebService);
@@ -41,7 +46,7 @@ public class StockManagerTest {
         ExternalISBNDataService databaseService = mock(ExternalISBNDataService.class);
         ExternalISBNDataService webService = mock(ExternalISBNDataService.class);
 
-        when(databaseService.lookup("0140177396")).thenReturn(new Book("0140177396","abc","abc"));
+        when(databaseService.lookup("0140177396")).thenReturn(new Book("0140177396", "abc", "abc"));
 
         StockManager stockManager = new StockManager();
         stockManager.setWebService(webService);
@@ -50,7 +55,7 @@ public class StockManagerTest {
         String isbn = "0140177396";
         String locatorCode = stockManager.getLocatorCode(isbn);
 
-        verify(databaseService,times(1)).lookup("0140177396");
+        verify(databaseService, times(1)).lookup("0140177396");
         verify(webService, never()).lookup(anyString());
 
     }
@@ -61,7 +66,7 @@ public class StockManagerTest {
         ExternalISBNDataService webService = mock(ExternalISBNDataService.class);
 
         when(databaseService.lookup("0140177396")).thenReturn(null);
-        when(webService.lookup("0140177396")).thenReturn(new Book("0140177396","abc","abc"));
+        when(webService.lookup("0140177396")).thenReturn(new Book("0140177396", "abc", "abc"));
 
         StockManager stockManager = new StockManager();
         stockManager.setWebService(webService);
@@ -71,6 +76,6 @@ public class StockManagerTest {
         String locatorCode = stockManager.getLocatorCode(isbn);
 
         verify(databaseService, times(1)).lookup("0140177396");
-        verify(webService,times(1)).lookup("0140177396");
+        verify(webService, times(1)).lookup("0140177396");
     }
 }

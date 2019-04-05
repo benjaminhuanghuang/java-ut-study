@@ -25,3 +25,12 @@
     <scope>test</scope>
 </dependency>
 ``` 
+With mock, it creates a bare-bone shell instance for you.
+```
+List<String> mockList = Mockito.mock(ArrayList.class);
+```
+With spy you can **partially** mock on an existing instance
+```
+List<String> spyList = Mockito.spy(new ArrayList<String>());
+doReturn().when(spyList).get(1);
+```

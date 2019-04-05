@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 public class ISBNValidatorTest {
 
+    @Test
     public void checkAValid10DigitISBN() {
         ISBNValidator validator = new ISBNValidator();
         boolean result = validator.checkISBN("0140449116");
@@ -55,6 +56,4 @@ public class ISBNValidatorTest {
         ISBNValidator validator = new ISBNValidator();
         validator.checkISBN("helloworld");
     }
-
-
 }

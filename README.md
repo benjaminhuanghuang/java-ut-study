@@ -13,3 +13,15 @@
 
 - Each test should validate one single piece of logic
 
+
+## Stubs an Mockito
+    Mock a service
+    
+```
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-all</artifactId>
+    <version>1.8.4</version>
+    <scope>test</scope>
+</dependency>
+``` 
